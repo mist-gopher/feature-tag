@@ -17,15 +17,15 @@ func NewTagRepositoryInMemory() Tag {
 }
 
 func (repo *Tag) GetByName(name string) (*tag.Tag, error) {
-	value, exist := repo.Data[name]
-
 	if repo.Err != nil {
 		return nil, repo.Err
 	}
 
-	if exist {
-		return &value, nil
+	value, exist := repo.Data[name]
+
+	if !exist {
+		return nil, nil
 	}
 
-	return nil, nil
+	return &value, nil
 }
