@@ -8,8 +8,13 @@ type Tag struct {
 
 func New(clientId, name string, value bool) Tag {
 	return Tag{
-		Id:    "tag:" + clientId + ":" + name,
-		Name:  name,
+		Id: MakeId(name, clientId),
+    Name:  name,
 		Value: value,
 	}
 }
+
+func MakeId(name, clientId string) string {
+  return "tag:" + clientId + ":" + name
+}
+

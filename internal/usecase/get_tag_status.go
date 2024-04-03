@@ -20,7 +20,7 @@ type GetTagByNameRepository interface {
 
 func GetTagStatus(input GetTagStatusInput, repo GetTagByNameRepository) (GetTagStatusOutput, error) {
 	output := GetTagStatusOutput{Active: false}
-	tag, err := repo.GetByName(tag.New(input.AppId, input.TagName, false).Id)
+	tag, err := repo.GetByName(tag.MakeId(input.TagName, input.AppId))
 
 	if err != nil {
 		return output, err
